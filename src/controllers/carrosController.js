@@ -2,7 +2,7 @@ const { getPool } = require("../config/database");
 
 exports.listarTodos = async (req, res, next) => {
   try {
-    const [rows] = await getPool().query("SELECT * FROM carros");
+    const { rows } = await getPool().query("SELECT * FROM carros ORDER BY id");
     const carros = rows.map((carro) => ({
       ...carro,
       preco: Number(carro.preco),
@@ -21,7 +21,7 @@ exports.buscarPorId = async (req, res, next) => {
       return res.status(400).json({ error: "ID inválido" });
     }
 
-    const [rows] = await getPool().query("SELECT * FROM carros WHERE id = ?", [id]);
+    const { rows } = await getPool().query("SELECT * FROM carros WHERE id = $1", [id]);
     if (rows.length === 0) {
       return res.status(404).json({ error: "Carro não encontrado" });
     }
@@ -46,17 +46,17 @@ exports.verificarDisponibilidade = async (req, res, next) => {
       return res.status(400).json({ error: "Parâmetros obrigatórios: id, data_retirada, data_devolucao" });
     }
 
-    const [rows] = await getPool().query(
-      `SELECT COUNT(*) as reservas
+    const { rows } = await getPool().query(
+      `SELECT COUNT(*)::int as reservas
        FROM reservas
-       WHERE carro_id = ?
+       WHERE carro_id = $1
        AND status = 'confirmada'
        AND (
-         (data_retirada BETWEEN ? AND ?)
-         OR (data_devolucao BETWEEN ? AND ?)
-         OR (data_retirada <= ? AND data_devolucao >= ?)
+         (data_retirada BETWEEN $2 AND $3)
+         OR (data_devolucao BETWEEN $2 AND $3)
+         OR (data_retirada <= $2 AND data_devolucao >= $3)
        )`,
-      [carroId, data_retirada, data_devolucao, data_retirada, data_devolucao, data_retirada, data_devolucao]
+      [carroId, data_retirada, data_devolucao]
     );
 
     res.json({ disponivel: rows[0].reservas === 0 });
@@ -74,5 +74,6 @@ function parseCaracteristicas(carac) {
       return [];
     }
   }
+  if (typeof carac === "object" && carac !== null) return carac;
   return [];
 }

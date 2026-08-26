@@ -38,9 +38,9 @@ async function start() {
   let retries = 5;
   while (retries > 0) {
     try {
-      console.log("Conectando ao banco de dados...");
+      console.log("Conectando ao banco de dados PostgreSQL...");
       await testConnection();
-      console.log("Conectado ao banco de dados MySQL");
+      console.log("Conectado ao banco de dados PostgreSQL");
 
       await createTables();
       console.log("Tabelas criadas/verificadas com sucesso");

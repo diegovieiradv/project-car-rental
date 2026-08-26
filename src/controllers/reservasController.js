@@ -35,13 +35,14 @@ exports.criar = async (req, res, next) => {
       return res.status(400).json({ error: "Dados inválidos", details: errors });
     }
 
-    const [result] = await getPool().query(
+    const { rows } = await getPool().query(
       `INSERT INTO reservas (carro_id, nome_cliente, email_cliente, telefone_cliente, data_retirada, data_devolucao, local_retirada)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING id`,
       [parseInt(carro_id), sanitize(nome_cliente.trim()), sanitize(email_cliente.trim()), sanitize(telefone_cliente.trim()), data_retirada, data_devolucao, sanitize(local_retirada.trim())]
     );
 
-    res.status(201).json({ message: "Reserva criada com sucesso", id: result.insertId });
+    res.status(201).json({ message: "Reserva criada com sucesso", id: rows[0].id });
   } catch (error) {
     next(error);
   }
@@ -49,7 +50,7 @@ exports.criar = async (req, res, next) => {
 
 exports.listar = async (req, res, next) => {
   try {
-    const [rows] = await getPool().query(`
+    const { rows } = await getPool().query(`
       SELECT r.*, c.nome as nome_carro, c.categoria, c.preco
       FROM reservas r
       JOIN carros c ON r.carro_id = c.id

@@ -28,12 +28,12 @@ exports.criar = async (req, res, next) => {
       return res.status(400).json({ error: "Dados inválidos", details: errors });
     }
 
-    const [result] = await getPool().query(
-      "INSERT INTO contatos (nome, email, telefone, mensagem) VALUES (?, ?, ?, ?)",
+    const { rows } = await getPool().query(
+      "INSERT INTO contatos (nome, email, telefone, mensagem) VALUES ($1, $2, $3, $4) RETURNING id",
       [sanitize(nome.trim()), sanitize(email.trim()), sanitize(telefone.trim()), sanitize(mensagem.trim())]
     );
 
-    res.status(201).json({ message: "Mensagem enviada com sucesso", id: result.insertId });
+    res.status(201).json({ message: "Mensagem enviada com sucesso", id: rows[0].id });
   } catch (error) {
     next(error);
   }
