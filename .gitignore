@@ -7,7 +7,7 @@ node_modules/
 .env.*.local
 
 # Build outputs
-styles.css
+public/styles.css
 dist/
 
 # IDE

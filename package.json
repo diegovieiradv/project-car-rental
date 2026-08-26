@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
-    "build:css": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
-    "vercel-build": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+    "build": "tailwindcss -i ./src/input.css -o ./public/styles.css --minify",
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/styles.css --watch",
+    "vercel-build": "tailwindcss -i ./src/input.css -o ./public/styles.css --minify"
   },
   "dependencies": {
     "cors": "^2.8.5",
