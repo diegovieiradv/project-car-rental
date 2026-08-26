@@ -3,105 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AutoRent - Aluguel de carros com os melhores preços e seleção de veículos modernos" />
     <title>AutoRent - Aluguel de Carros</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
   <body class="bg-gray-50">
-    <header
-      class="fixed w-full top-0 z-50 bg-white/95 shadow-md transition-colors duration-300"
-    >
+    <header class="fixed w-full top-0 z-50 bg-white/95 shadow-md transition-colors duration-300">
       <nav class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
           <a href="#" class="text-2xl font-bold text-primary-600">AutoRent</a>
 
-          <!-- Menu para desktop -->
+          <!-- Menu desktop -->
           <ul class="hidden md:flex space-x-8">
-            <li>
-              <a
-                href="#home"
-                class="text-gray-700 hover:text-primary-600 transition-colors"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="#cars"
-                class="text-gray-700 hover:text-primary-600 transition-colors"
-                >Carros</a
-              >
-            </li>
-            <li>
-              <a
-                href="#about"
-                class="text-gray-700 hover:text-primary-600 transition-colors"
-                >Sobre</a
-              >
-            </li>
-            <li>
-              <a
-                href="#contact"
-                class="text-gray-700 hover:text-primary-600 transition-colors"
-                >Contato</a
-              >
-            </li>
+            <li><a href="#home" class="text-gray-700 hover:text-primary-600 transition-colors">Home</a></li>
+            <li><a href="#catalog" class="text-gray-700 hover:text-primary-600 transition-colors">Carros</a></li>
+            <li><a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors">Sobre</a></li>
+            <li><a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors">Contato</a></li>
           </ul>
 
-          <!-- Botão do menu mobile -->
-          <button
-            type="button"
-            class="md:hidden text-gray-700 hover:text-primary-600"
-            onclick="toggleMobileMenu()"
-            aria-label="Abrir menu de navegação"
-            title="Abrir menu de navegação"
-          >
+          <!-- Botão menu mobile -->
+          <button type="button" class="md:hidden text-gray-700 hover:text-primary-600" onclick="toggleMobileMenu()" aria-label="Abrir menu">
             <i class="fas fa-bars text-2xl"></i>
           </button>
-
-          
         </div>
 
         <!-- Menu mobile -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
           <ul class="space-y-4">
+            <li><a href="#home" class="block text-gray-700 hover:text-primary-600 transition-colors" onclick="closeMobileMenu()">Home</a></li>
+            <li><a href="#catalog" class="block text-gray-700 hover:text-primary-600 transition-colors" onclick="closeMobileMenu()">Carros</a></li>
+            <li><a href="#about" class="block text-gray-700 hover:text-primary-600 transition-colors" onclick="closeMobileMenu()">Sobre</a></li>
+            <li><a href="#contact" class="block text-gray-700 hover:text-primary-600 transition-colors" onclick="closeMobileMenu()">Contato</a></li>
             <li>
-              <a
-                href="#home"
-                class="block text-gray-700 hover:text-primary-600 transition-colors"
-                >Home</a
-              >
-            </li>
-            <li>
-              <a
-                href="#cars"
-                class="block text-gray-700 hover:text-primary-600 transition-colors"
-                >Carros</a
-              >
-            </li>
-            <li>
-              <a
-                href="#about"
-                class="block text-gray-700 hover:text-primary-600 transition-colors"
-                >Sobre</a
-              >
-            </li>
-            <li>
-              <a
-                href="#contact"
-                class="block text-gray-700 hover:text-primary-600 transition-colors"
-                >Contato</a
-              >
-            </li>
-            <li>
-              <button
-                type="button"
-                class="btn-primary w-full"
-                aria-label="Fazer reserva de carro"
-                title="Fazer reserva de carro"
-              >
+              <button type="button" class="btn-primary w-full" onclick="scrollParaFormulario(); closeMobileMenu();">
                 Reservar Agora
               </button>
             </li>
@@ -111,16 +46,11 @@
     </header>
 
     <main>
-      <section
-        id="home"
-        class="relative min-h-screen flex items-center justify-center pt-16"
-      >
-        <!-- Imagem de fundo com overlay -->
+      <!-- Hero -->
+      <section id="home" class="relative min-h-screen flex items-center justify-center pt-16">
         <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center">
           <div class="absolute inset-0 bg-black/50"></div>
         </div>
-
-        <!-- Conteúdo do hero -->
         <div class="relative container mx-auto px-4 text-center text-white">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Alugue o carro dos seus sonhos
@@ -128,56 +58,32 @@
           <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Oferecemos a melhor seleção de carros com preços imbatíveis
           </p>
-          <button
-            type="button"
-            id="verCatalogo"
-            class="btn-primary text-lg px-8 py-3"
-            onclick="scrollParaCarros()"
-            aria-label="Ver catálogo de carros disponíveis"
-            title="Ver catálogo de carros disponíveis"
-          >
+          <button type="button" class="btn-primary text-lg px-8 py-3" onclick="scrollParaCarros()">
             Ver Catálogo
           </button>
         </div>
       </section>
 
+      <!-- Busca -->
       <section id="search" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
-          <form
-            class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg -mt-32 relative"
-          >
+          <form id="search-form" class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg -mt-32 relative">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label for="pickup-location" class="block text-gray-700 mb-2"
-                  >Local de Retirada</label
-                >
-                <input
-                  type="text"
-                  id="pickup-location"
-                  placeholder="Digite a cidade"
-                  class="input-field"
-                />
+                <label for="pickup-location" class="block text-gray-700 mb-2">Local de Retirada</label>
+                <input type="text" id="pickup-location" placeholder="Digite a cidade" class="input-field" required />
               </div>
               <div>
-                <label for="pickup-date" class="block text-gray-700 mb-2"
-                  >Data de Retirada</label
-                >
-                <input type="date" id="pickup-date" class="input-field" />
+                <label for="pickup-date" class="block text-gray-700 mb-2">Data de Retirada</label>
+                <input type="date" id="pickup-date" class="input-field" required />
               </div>
               <div>
-                <label for="return-date" class="block text-gray-700 mb-2"
-                  >Data de Devolução</label
-                >
-                <input type="date" id="return-date" class="input-field" />
+                <label for="return-date" class="block text-gray-700 mb-2">Data de Devolução</label>
+                <input type="date" id="return-date" class="input-field" required />
               </div>
               <div class="flex items-end">
-                <button
-                  type="submit"
-                  class="btn-primary w-full"
-                  aria-label="Buscar carros disponíveis"
-                  title="Buscar carros disponíveis"
-                >
-                  Buscar Carros
+                <button type="submit" class="btn-primary w-full">
+                  <i class="fas fa-search mr-2"></i>Buscar Carros
                 </button>
               </div>
             </div>
@@ -185,44 +91,31 @@
         </div>
       </section>
 
-      <!-- Seção de Catálogo Inicial -->
+      <!-- Catálogo Inicial -->
       <section id="catalog" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
           <h2 class="text-3xl font-bold text-center mb-12">Nosso Catálogo</h2>
-          <div
-            class="preview-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <!-- Grid de preview será preenchido via JavaScript -->
-          </div>
+          <div class="preview-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
       </section>
 
-      <!-- Seção de Carros com Preços -->
+      <!-- Carros com Preços -->
       <section id="cars" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-          <h2 class="text-3xl font-bold text-center mb-12">
-            Carros Disponíveis
-          </h2>
-          <div
-            class="cars-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <!-- Grid de carros será preenchido via JavaScript -->
-          </div>
+          <h2 class="text-3xl font-bold text-center mb-12">Carros Disponíveis</h2>
+          <div class="cars-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
       </section>
 
+      <!-- Sobre -->
       <section id="about" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
-          <h2 class="text-3xl font-bold text-center mb-12">
-            Por que escolher a AutoRent?
-          </h2>
+          <h2 class="text-3xl font-bold text-center mb-12">Por que escolher a AutoRent?</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="card p-6 text-center">
               <i class="fas fa-car text-4xl text-primary-600 mb-4"></i>
               <h3 class="text-xl font-semibold mb-2">Carros Modernos</h3>
-              <p class="text-gray-600">
-                Frota sempre atualizada com os melhores modelos
-              </p>
+              <p class="text-gray-600">Frota sempre atualizada com os melhores modelos</p>
             </div>
             <div class="card p-6 text-center">
               <i class="fas fa-shield-alt text-4xl text-primary-600 mb-4"></i>
@@ -230,58 +123,31 @@
               <p class="text-gray-600">Todos os carros com seguro completo</p>
             </div>
             <div class="card p-6 text-center">
-              <i
-                class="fas fa-money-bill-wave text-4xl text-primary-600 mb-4"
-              ></i>
+              <i class="fas fa-money-bill-wave text-4xl text-primary-600 mb-4"></i>
               <h3 class="text-xl font-semibold mb-2">Melhores Preços</h3>
               <p class="text-gray-600">Preços competitivos e transparentes</p>
             </div>
             <div class="card p-6 text-center">
               <i class="fas fa-headset text-4xl text-primary-600 mb-4"></i>
               <h3 class="text-xl font-semibold mb-2">Suporte 24/7</h3>
-              <p class="text-gray-600">
-                Assistência completa a qualquer momento
-              </p>
+              <p class="text-gray-600">Assistência completa a qualquer momento</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Contato -->
       <section id="contact" class="py-16">
         <div class="container mx-auto px-4">
           <h2 class="text-3xl font-bold text-center mb-12">Entre em Contato</h2>
           <div class="max-w-2xl mx-auto">
-            <form class="space-y-6">
-              <input
-                type="text"
-                placeholder="Nome completo"
-                required
-                class="input-field"
-              />
-              <input
-                type="email"
-                placeholder="E-mail"
-                required
-                class="input-field"
-              />
-              <input
-                type="tel"
-                placeholder="Telefone"
-                required
-                class="input-field"
-              />
-              <textarea
-                placeholder="Mensagem"
-                required
-                class="input-field min-h-[150px] resize-y"
-              ></textarea>
-              <button
-                type="submit"
-                class="btn-primary w-full"
-                aria-label="Enviar mensagem de contato"
-                title="Enviar mensagem de contato"
-              >
-                Enviar Mensagem
+            <form id="contact-form" class="space-y-6">
+              <input type="text" name="nome" placeholder="Nome completo" required class="input-field" />
+              <input type="email" name="email" placeholder="E-mail" required class="input-field" />
+              <input type="tel" name="telefone" placeholder="Telefone" required class="input-field" />
+              <textarea name="mensagem" placeholder="Mensagem" required class="input-field min-h-[150px] resize-y"></textarea>
+              <button type="submit" class="btn-primary w-full">
+                <i class="fas fa-paper-plane mr-2"></i>Enviar Mensagem
               </button>
             </form>
           </div>
@@ -289,14 +155,13 @@
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 class="text-xl font-bold mb-4">AutoRent</h3>
-            <p class="text-gray-400">
-              Sua melhor escolha para aluguel de carros.
-            </p>
+            <p class="text-gray-400">Sua melhor escolha para aluguel de carros.</p>
           </div>
           <div>
             <h3 class="text-xl font-bold mb-4">Contato</h3>
@@ -308,39 +173,30 @@
           <div>
             <h3 class="text-xl font-bold mb-4">Redes Sociais</h3>
             <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
                 <i class="fab fa-facebook text-2xl"></i>
               </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
                 <i class="fab fa-instagram text-2xl"></i>
               </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
                 <i class="fab fa-twitter text-2xl"></i>
               </a>
             </div>
           </div>
         </div>
-        <div
-          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
-        >
-          <p>&copy; 2024 AutoRent. Todos os direitos reservados.</p>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2025 AutoRent. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
 
     <script>
       function toggleMobileMenu() {
-        const mobileMenu = document.getElementById("mobile-menu");
-        mobileMenu.classList.toggle("hidden");
+        document.getElementById("mobile-menu").classList.toggle("hidden");
+      }
+      function closeMobileMenu() {
+        document.getElementById("mobile-menu").classList.add("hidden");
       }
     </script>
     <script src="script.js"></script>
